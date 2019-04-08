@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    location: '',
+    county: '',
+    sliderList: [
+      { selected: true, imageSource: 'http://up.enterdesk.com/edpic/7d/35/13/7d3513ecabdf1f7eb4f1407f0e82f23c.jpg' },
+      { selected: false, imageSource: '../../images/2.jpg' },
+      { selected: false, imageSource: 'http://pic1.win4000.com/wallpaper/9/538544be6ae36.jpg' },
+    ],
+    today: "",
+    inTheaters: {},
+    containerShow: true,
+    weatherData: '',
+    air: '',
+    dress: ''
   },
 
   /**
@@ -14,7 +26,17 @@ Page({
   onLoad: function (options) {
 
   },
-
+//轮播图绑定change事件，修改图标的属性是否被选中
+  switchTab: function (e) {
+    var sliderList = this.data.sliderList;
+    var i, item;
+    for (i = 0; item = sliderList[i]; ++i) {
+      item.selected = e.detail.current == i;
+    }
+    this.setData({
+      sliderList: sliderList
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

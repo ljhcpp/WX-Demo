@@ -1,1 +1,41 @@
 /* pages/index/index.wxss */
+
+.banner {
+    height: 150px;
+    background-color: #ddd;
+}
+
+.customSwiper {
+    height: 150px;
+    position: relative;
+}
+
+.customSwiper  image{
+    height: 150px;
+}
+
+.tab {
+    height: 70rpx;
+    position: absolute;
+    bottom:13px;
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab .tab-item {
+    background-color: #ccc;
+    height: 50rpx;
+    width: 50rpx;
+    line-height: 50rpx;
+    font-size: 12rpx;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.tab .tab-item.selected {
+    background-color: #2a579a;
+}
