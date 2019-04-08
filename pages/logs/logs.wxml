@@ -1,0 +1,26 @@
+<!--logs.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+ 
+  
+  <view class="section">
+    <view class="section__title">姓名：</view>
+    <input class="section_input" name="user_name" placeholder="请输入您的姓名" />
+  </view>
+  <view class="section">
+    <view class="section__title">出生年月：</view>
+    <input class="section_input" name="nian" placeholder="请输入您的出生年月  eg：201909" />
+  </view>
+  <view class="section">
+    <view class="section__title">手机号：</view>
+    <input class="section_input" name="phone" placeholder="请输入您的手机号" />
+  </view>
+  <view class="section">
+    <view class="section__title">身份证信息：</view>
+    <input class="section_input" name="num" placeholder="请输入您的身份证" />
+  </view>
+  <view class="btn-area">
+    <button class="btn-sub" form-type="submit">Submit</button>
+  </view>
+</form>
+</view>
