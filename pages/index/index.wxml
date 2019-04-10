@@ -22,5 +22,22 @@
  
   <view class="thisCityName">当前位置：{{location}}</view>
   <view class="thisCityName-change">更改定位</view>
- 
- </view>
+   <view class="weatherwrap" bindtap='gotoWeather'>
+    <!--显示当天的天气信息-->
+    <view class="info">
+      <!--城市名称 当前日期-->
+      <view class="city">{{location}} ({{today}})</view>
+      <!--当天温度-->
+      <view class="temp">{{weatherData.tmp}}℃</view>
+      <!--其他描述-->
+      <view class="weather">
+        <view>{{weatherData.cond_txt}}</view>
+        <view>{{weatherData.wind_dir}}</view> 
+        <view>风速：{{weatherData.wind_spd}}</view>
+        <view>湿度: {{weatherData.hum}}</view>
+        <!-- <view>{{air.qlty}}</view> -->
+      </view>
+      <view class="life" style='text-indent:1em;'>{{dress.txt}}</view>
+    </view> 
+  </view>
+</view>
