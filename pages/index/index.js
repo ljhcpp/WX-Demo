@@ -1,12 +1,12 @@
 // pages/index/index.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    location: '12',
-    county: '',
+    location: '',
     sliderList: [
       { selected: true, imageSource: 'http://up.enterdesk.com/edpic/7d/35/13/7d3513ecabdf1f7eb4f1407f0e82f23c.jpg' },
       { selected: false, imageSource: '../../images/2.jpg' },
@@ -25,6 +25,7 @@ Page({
    */
   onLoad: function (options) {
 
+    this.getLocation();
   },
 //轮播图绑定change事件，修改图标的属性是否被选中
   switchTab: function (e) {
@@ -46,17 +47,22 @@ Page({
         //当前的经度和纬度
         let latitude = res.latitude
         let longitude = res.longitude
+        console.log(latitude);
         wx.request({
-          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`,
+          url: `https://apis.map.qq.com/ws/geocoder/v1/?`,
+          data: {
+            "key" : "JNBBZ-KLTKJ-LOZF6-KGWBS-6KVNH-4EBKU",
+            "location" : `${latitude},${longitude}`
+          },
+          method: 'GET',
           success: res => {
-            app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.data.result.ad_info.city;
-            app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.data.result.ad_info.district;
+            console.log(res);
+            app.globalData.defaultCity = res.data.result.ad_info.city;
             that.setData({
               location: app.globalData.defaultCity,
-              county: app.globalData.defaultCounty
             });
-            that.getWeather();
-            that.getAir();
+            // that.getWeather();
+            // that.getAir();
           }
         })
       }

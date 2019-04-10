@@ -19,7 +19,8 @@
 
 <view class="index">
   <!--<text>点击地名以更换城市</text>-->
-  <view class="hotcity-common" style="display:inline;">当前位置: </view>
-  <view class="thisCityName">{{location}}{{county}}</view>
+ 
+  <view class="thisCityName">当前位置：{{location}}</view>
+  <view class="thisCityName-change">更改定位</view>
  
  </view>
