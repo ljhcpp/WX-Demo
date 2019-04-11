@@ -1,5 +1,4 @@
-<!--pages/index/index.wxml-->
-
+<!-- pages/index/index.wxml -->
 <view class='customSwiper'>
   <swiper class='banner' autoplay='true' interval='5000' duration='300' bindchange='switchTab'>
     <block wx:for="{{sliderList}}" wx:key="key">
@@ -15,29 +14,52 @@
     </block>
   </view>
 </view>
-
-
 <view class="index">
-  <!--<text>点击地名以更换城市</text>-->
- 
+  <!-- <text>点击地名以更换城市</text> -->
   <view class="thisCityName">当前位置：{{location}}</view>
   <view class="thisCityName-change">更改定位</view>
-   <view class="weatherwrap" bindtap='gotoWeather'>
-    <!--显示当天的天气信息-->
+  <view class="weatherwrap" bindtap='gotoWeather'>
+    <!-- 显示当天的天气信息 -->
     <view class="info">
-      <!--城市名称 当前日期-->
+      <!-- 城市名称 当前日期 -->
       <view class="city">{{location}} ({{today}})</view>
-      <!--当天温度-->
+      <!-- 当天温度 -->
       <view class="temp">{{weatherData.tmp}}℃</view>
-      <!--其他描述-->
+      <!-- 其他描述 -->
       <view class="weather">
         <view>{{weatherData.cond_txt}}</view>
-        <view>{{weatherData.wind_dir}}</view> 
+        <view>{{weatherData.wind_dir}}</view>
         <view>风速：{{weatherData.wind_spd}}</view>
         <view>湿度: {{weatherData.hum}}</view>
         <!-- <view>{{air.qlty}}</view> -->
       </view>
       <view class="life" style='text-indent:1em;'>{{dress.txt}}</view>
-    </view> 
+    </view>
+  </view>
+  <view class="container" wx:if="{{containerShow}}">
+    <view class="movies-template">
+      <view class="movie-list-container">
+        <view class="inner-container">
+          <view class="movie-head">
+            <text class="slogan">{{categoryTitle}} 正在热映</text>
+            <view catchtap="onMoreTap" class="more" data-category="{{categoryTitle}}">
+              <text class="more-text">更多</text>
+              <image class="more-img" src="/images/icon/arrow-right.png"></image>
+            </view>
+          </view>
+          <view class="movies-container">
+            <scroll-view scroll-x style="width: 100%">
+              <block wx:for="{{movies}}" wx:for-item="movie" wx:key="key">
+                <view class="movie-container" catchtap="onMovieTap" data-movieId="{{movieId}}">
+                  <image class="movie-img" src="{{coverageUrl}}"></image>
+                  <text class="movie-title">{{title}}</text>
+                  <template is="starsTemplate" data="{{stars:stars, score: average}}" />
+                </view>
+              </block>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

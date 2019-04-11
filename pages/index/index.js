@@ -32,6 +32,10 @@ Page({
      });
     // 定位
     this.getLocation();
+     //获取豆瓣电影正在热映信息
+     var inTheatersUrl = app.globalData.doubanBase +"/v2/movie/in_theaters" + "?start=0&count=6";
+     this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
+
   },
 //轮播图绑定change事件，修改图标的属性是否被选中
   switchTab: function (e) {
@@ -89,7 +93,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res);
+      
         app.globalData.weatherData = res.data.HeWeather6[0].status == "unknown city" ? "" : res.data.HeWeather6[0];
         var weatherData = app.globalData.weatherData ? app.globalData.weatherData.now : "暂无该城市天气信息";
         var dress = app.globalData.weatherData ? res.data.HeWeather6[0].lifestyle[1] : { txt: "暂无该城市天气信息"};
@@ -100,6 +104,53 @@ Page({
       }
     })
   },
+  //调用豆瓣api
+  getMovieListData: function (url, settedKey, categoryTitle) {
+    wx.showNavigationBarLoading()
+    var that = this;
+    wx.request({
+      url: url,
+      method: 'GET',
+      header: {
+        "Content-Type": "json"
+      },
+      success: function (res) {
+        that.processDoubanData(res.data, settedKey, categoryTitle)
+      },
+      fail: function (error) {
+        console.log(error)
+      }
+    })
+  },
+  //获得电影数据后的处理方法
+  processDoubanData: function (moviesDouban, settedKey, categoryTitle) {
+    var movies = [];
+    for (var idx in moviesDouban.subjects) {
+      var subject = moviesDouban.subjects[idx];
+      var title = subject.title;
+      if (title.length >= 6) {
+        title = title.substring(0, 6) + "...";
+      }
+      var temp = {
+        stars: util.convertToStarsArray(subject.rating.stars),
+        title: title,
+        average: subject.rating.average,
+        coverageUrl: subject.images.large,
+        movieId: subject.id
+      }
+      movies.push(temp)
+    }
+    var readyData = {};
+   
+    readyData[settedKey] = {
+      categoryTitle: categoryTitle,
+      movies: movies
+    }
+    this.setData(readyData);
+    console.log(readyData);
+    wx.hideNavigationBarLoading();
+  },
+
   // getAir:function(){
 
   // },
