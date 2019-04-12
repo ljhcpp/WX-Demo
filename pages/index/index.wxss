@@ -116,37 +116,46 @@
 
 
 
+  .movies-template{
+     width: 100%;
+  }
   .movie-list-container {
+    width: 100%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
   }
   
   .inner-container{
+       width: 100%;
       margin: 0  auto 20rpx;
   }
   
   .movie-head {
+    width: 100%;
+    box-sizing: border-box;
     padding: 30rpx 20rpx 22rpx;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
   
   .slogan {
-    font-size: 24rpx;
+    font-size: 11px;
     width: 30%;
   }
   
   .more {
     width: 40%;
+    text-align: right;
   }
   
   .more-text {
     vertical-align: middle;
     margin-right: 10rpx;
     color: #1f4ba5;
-    font-size: 15px;
+    font-size: 11px;
   }
   
   .more-img {

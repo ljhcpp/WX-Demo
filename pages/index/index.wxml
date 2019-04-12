@@ -44,7 +44,7 @@
             <text class="slogan">{{categoryTitle}} 正在热映</text>
             <view catchtap="onMoreTap" class="more" data-category="{{categoryTitle}}">
               <text class="more-text">更多</text>
-              <image class="more-img" src="/images/icon/arrow-right.png"></image>
+              <image class="more-img" src="/images/arrow-right.png"></image>
             </view>
           </view>
           <view class="movies-container">
@@ -53,7 +53,7 @@
                 <view class="movie-container" catchtap="onMovieTap" data-movieId="{{movieId}}">
                   <image class="movie-img" src="{{coverageUrl}}"></image>
                   <text class="movie-title">{{title}}</text>
-                  <template is="starsTemplate" data="{{stars:stars, score: average}}" />
+                  <!-- <template is="starsTemplate" data="{{stars:stars, score: average}}" /> -->
                 </view>
               </block>
             </scroll-view>
